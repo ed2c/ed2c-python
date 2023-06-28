@@ -1,0 +1,56 @@
+---
+- name: Let miniconda install the required packages, then pip
+  block:
+  - name: Handle environment creation
+    block:
+    - name: Write environment info to file
+      copy:
+        content: "---\n{{ req.miniconda | to_yaml }}"
+        dest: "run-dir/conda-req.yml"
+
+    - name: Create conda environment with mamba
+      command: >
+        /etc/miniconda/bin/mamba env create --force --file run-dir/conda-req.yml
+      register: conda_create_result
+      # failed_when:  (conda_create_result.stderr | length > 0) and (success_indicator not in conda_create_result.stderr)
+      failed_when:  conda_create_result is not success
+
+    # - name: Check env creation
+    #   stat:
+    #     path: "/etc/miniconda/envs/{{req.miniconda.name}}"
+    #   register: environment_check
+
+    # - name: Fail if conda env not created
+    #   fail:
+    #     msg: >
+    #       The conda environment
+    #       '/etc/miniconda/envs/{{req.miniconda.name}}'
+    #       has not been created.
+    #   when: environment_check.stat.isdir is not defined or not environment_check.stat.isdir
+        
+    - name: Copy create-kernel script as executable
+      copy:
+        src: create-kernel.sh
+        dest: run-dir/create-kernel.sh
+        mode: '0755'
+
+    - name: In a different shell, create and install jupyter kernel from environment
+      shell: "run-dir/create-kernel.sh {{req.miniconda.name}}"
+      args:
+        executable: /bin/bash
+      become: true
+
+    - name: Get homedir
+      register: homedir
+      find:
+        paths: ['/home']
+        file_type: directory
+
+    - name: Place KERNEL-README.ipynb in user's home directories.
+      copy:
+        src: KERNEL-README.ipynb
+        dest: "{{item['path']}}/"
+        mode: 0777
+      with_items: "{{ homedir['files'] }}"
+    
+    when: req.miniconda is defined

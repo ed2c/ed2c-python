@@ -1,0 +1,28 @@
+---
+- name: Install required conda-packages
+  block:
+  - name: Download conda installer
+    get_url:
+      url: https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+      dest: run-dir
+      mode: 0755
+
+  - name: Run conda installer
+    shell: "bash run-dir/Miniconda3-latest-Linux-x86_64.sh -b -u -p /etc/miniconda"
+
+  - name: Install mamba to conda base-environment
+    command: >
+      /etc/miniconda/bin/conda install mamba
+      --name base
+      --channel conda-forge
+      --yes
+  
+  - name: Update mamba
+    command: >
+      /etc/miniconda/bin/mamba update
+      --name base
+      --yes
+      mamba
+
+    
+
