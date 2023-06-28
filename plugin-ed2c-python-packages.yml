@@ -9,4 +9,3 @@
     - include_tasks: 20-apt-installs.yml
     - include_tasks: 30-install-miniconda.yml
     - include_tasks: 40-miniconda-and-pip-installs.yml
-
