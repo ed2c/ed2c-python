@@ -6,12 +6,12 @@ apt:
   #   # or for R-repo
   # - E298A3A825C0D65DFD57CBB651716619E084DAB9
   repos:
-    - "deb http://archive.ubuntu.com/ubuntu focal main multiverse universe restricted"
-    - "deb http://archive.ubuntu.com/ubuntu focal-security main multiverse universe restricted"
+  - 'deb http://archive.ubuntu.com/ubuntu focal main multiverse universe restricted'
+  - 'deb http://archive.ubuntu.com/ubuntu focal-security main multiverse universe restricted'
   # - 'deb [arch=amd64] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse'
   # - 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/'
   packages:
-    - ncdu
+  - ncdu
   # deb:
   # # xxdiff
   # - 'http://nl.archive.ubuntu.com/ubuntu/pool/universe/x/xxdiff/xxdiff_4.0.1+hg487+dfsg-1_amd64.deb'
@@ -19,64 +19,26 @@ apt:
   # - 'http://nl.archive.ubuntu.com/ubuntu/pool/universe/n/netcdf-cxx/libnetcdf-c++4-1_4.3.1-2build1_amd64.deb'
   # # - 'https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2021.09.0-351-amd64.deb'
 
+
 miniconda:
-  name: analytics
+  name: custom-kernel
   channels:
-    - conda-forge
-    - defaults
+  - conda-forge
+  - defaults
   dependencies:
-    - python=3.10
-    - pandas
-    - numpy
-    - jupyter
-    - jupyterlab
-    - nbformat # ter voorkoming van 'capture_validation_error' bij openen notebooks
-    - nb_conda_kernels
-    - ipykernel
-    # basistabellen
-    - case-converter
-    - graphviz
-    # SPSS inlezen
-    - pyreadstat
-    # code format
-    - black
-    - isort
-    # database
-    - pyodbc
-    - sqlalchemy
-    # - SQLAlchemy-Utils
-    - sqlalchemy_schemadisplay
-    # statistiek
-    - scikit-learn
-    - scipy # ter voorkoming van phik incompatibility
-    # excel en arrow
-    - pyarrow #nodig voor pandas om parquet in te laden
-    - openpyxl
-    - xlrd
-    # documentatie
-    - mkdocs
-    # scripting
-    - click
-    - typer
-    - python-dotenv
-    # metadata van dataframes
-    - pandas-profiling
-    # visualisatie
-    - matplotlib
-    - seaborn
-    - plotly
-    - bokeh
-    - altair
-    - altair_data_server
-    - altair_saver
-    # cbs
-    - graphviz
-    # validatie
-    - pandera
-    - frictionless
-    - typed-ast
-    # pip packages
-    - pip
-    - pip:
-        - cbsodata
+  - python=3.9.10
+  - numpy
+  - scipy
+  - pandas
+  # to create ipython-kernels you will always need the package ipykernel
+  - ipykernel
+  # After conda-packages pip-packages can still be installed
+  # so install pip ...
+  - pip
+  # ... and tell conda to use it:
+  # - pip:
+  #   - requests
+  #   - ...
   prefix: /etc/miniconda/envs
+
+    
