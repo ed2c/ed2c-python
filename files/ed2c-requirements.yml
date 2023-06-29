@@ -30,12 +30,32 @@ miniconda:
   - numpy
   - scipy
   - pandas
-  - pyarrow
+  # excel en arrow
+  - pyarrow #nodig voor pandas om parquet in te laden
+  - openpyxl
+  - xlrd
   # to create ipython-kernels you will always need the package ipykernel
   - ipykernel
   # After conda-packages pip-packages can still be installed
   # so install pip ...
+  # SPSS inlezen
+  - pyreadstat
+  # code format
+  - black
+  - isort
+  # database
+  - pyodbc
+  - sqlalchemy
   - pip
+   # scripting
+  - click
+  - typer
+  # visualisatie
+  - matplotlib
+  - seaborn
+  - plotly
+  - bokeh
+  - altair
   # ... and tell conda to use it:
   # - pip:
   #   - requests
