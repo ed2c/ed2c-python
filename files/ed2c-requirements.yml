@@ -33,7 +33,7 @@ miniconda:
   # to create ipython-kernels you will always need the package ipykernel
   - ipykernel
   # basistabellen
-  # - case-converter
+  - case-converter
   - graphviz
   # SPSS inlezen
   - pyreadstat
