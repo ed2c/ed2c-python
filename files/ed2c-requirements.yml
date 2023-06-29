@@ -26,43 +26,14 @@ miniconda:
   - conda-forge
   - defaults
   dependencies:
-  - python=3.10
+  - python=3.9.10
   - numpy
   - scipy
   - pandas
   # to create ipython-kernels you will always need the package ipykernel
   - ipykernel
-  # basistabellen
-  - case-converter
-  - graphviz
-  # SPSS inlezen
-  - pyreadstat
-  # code format
-  - black
-  - isort
-  # database
-  - pyodbc
-  - sqlalchemy
-  # statistiek
-  - scikit-learn
-  - scipy # ter voorkoming van phik incompatibility
-  # excel en arrow
-  - pyarrow #nodig voor pandas om parquet in te laden
-  - openpyxl
-  - xlrd
-  # scripting
-  - click
-  - typer
-  # visualisatie
-  - matplotlib
-  - seaborn
-  - plotly
-  - bokeh
-  - altair
-  - altair_data_server
-  - altair_saver
-  # validatie
-  # pip packages
+  # After conda-packages pip-packages can still be installed
+  # so install pip ...
   - pip
   # ... and tell conda to use it:
   # - pip:
