@@ -21,7 +21,7 @@ apt:
 
 
 miniconda:
-  name: custom-kernel
+  name: analytics
   channels:
   - conda-forge
   - defaults
@@ -29,13 +29,16 @@ miniconda:
   - python=3.10
   - numpy
   - scipy
+  - scikit-learn
   - pandas
+  # to create ipython-kernels you will always need the package ipykernel
+  - ipykernel
+  - nbformat
+  - nb_conda_kernels
   # excel en arrow
   - pyarrow #nodig voor pandas om parquet in te laden
   - openpyxl
   - xlrd
-  # to create ipython-kernels you will always need the package ipykernel
-  - ipykernel
   # After conda-packages pip-packages can still be installed
   # so install pip ...
   # SPSS inlezen
@@ -57,9 +60,9 @@ miniconda:
   - bokeh
   - altair
   # ... and tell conda to use it:
-  # - pip:
-  #   - requests
-  #   - ...
+  - pip:
+    - cbsodata
+    - case-converter
   prefix: /etc/miniconda/envs
 
     
